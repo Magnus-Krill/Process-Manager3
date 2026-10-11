@@ -33,6 +33,7 @@ new Function('exports', `
   const _mb = b => (b == null || !Number.isFinite(b)) ? null : Math.round(b / 1048576);
   function _mbTxt(b) { const v = _mb(b); return v == null ? '—' : v + ' MB'; }
   let trackSortKey = 'entries', trackSortDesc = true;
+  ${grab('jsArg')}
   ${grab('_sortTracked')}
   ${grab('_trackSortToggle')}
   ${grab('memSubtitle')}

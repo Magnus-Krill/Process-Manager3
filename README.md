@@ -181,6 +181,8 @@ Open at `http://localhost:4926/dashboard` or run `pm3 dashboard`.
 | **System** | CPU load, memory usage, network I/O with sparklines, disk usage, server uptime - click the CPU or Memory card for a detailed modal |
 | **Config** | Edit all PM3 settings live via the dashboard |
 
+The **CPU: Global / CPU: Per core** button changes process CPU percentages throughout the dashboard and remembers your choice in this browser. Global is the default: 100% means the whole machine is busy. Per core uses 100% for one logical core, so multithreaded processes can exceed 100%. On a four-core machine, 100% per core equals 25% globally. The System overview always shows whole-machine usage.
+
 ### CPU detail modal
 
 Click the **CPU Load** card in the System tab to open a detailed view:

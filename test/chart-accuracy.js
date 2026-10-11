@@ -77,6 +77,12 @@ const overflow = renderChart([50, 250, 50], 'red', 't', '%');   // % axis is fix
 const ys = [...overflow.matchAll(/[MC]([\d.]+),([\d.]+)/g)].map(m => +m[2]);
 assert(Math.min(...ys) >= PAD_T - 1e-6, `>100% value escaped the plot band: ${Math.min(...ys)}`);
 
+// Per-core CPU charts retain values above 100% on their logical-CPU capacity axis.
+const multicore = renderChart([100, 400], 'red', 'multi', '%', 84, 400);
+assert(/>400%<\/span>/.test(multicore), 'per-core axis must show total logical-CPU capacity');
+const singleCorePoint = [...multicore.matchAll(/M([\d.]+),([\d.]+)/g)][0];
+assert(Math.abs(+singleCorePoint[2] - 60) < 0.01, '100% must occupy a quarter of a 400% plot');
+
 // --- 5. y-axis labels are HTML, never <text> in the stretched SVG ---
 // The SVG is preserveAspectRatio="none", so x is scaled non-uniformly: any <text> inside
 // it gets smeared horizontally, and the distortion grows the further the container width
